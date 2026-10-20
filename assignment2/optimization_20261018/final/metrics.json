@@ -1,0 +1,10 @@
+{
+  "test_accuracy": 0.860625,
+  "test_macro_f1": 0.8562440574392431,
+  "train_samples": 32000,
+  "test_samples": 8000,
+  "fit_seconds": 300.0224574000458,
+  "predict_seconds": 0.15134139999281615,
+  "train_feature_seconds": 5.62283170002047,
+  "test_feature_seconds": 1.185781300009694
+}

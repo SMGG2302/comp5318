@@ -1,0 +1,18 @@
+{
+  "created_utc": "2026-10-18T05:50:06.028349+00:00",
+  "python": "3.12.14",
+  "sklearn": "1.9.1",
+  "numpy": "2.3.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 42,
+  "n_jobs": 4,
+  "selection_metric": "validation macro-F1",
+  "data_sha256": {
+    "X_test.npy": "644c267fadac9bce1b1c75273f521fa22f92bdd831ed821ee1b8f98e9f861693",
+    "X_train.npy": "abd9bebaccd42d42505d5f86b5632349e30c47a34b39808e2b92ab69843f33a3",
+    "y_test.npy": "c3bed54d86a454329527824d76a507f1dea7e8f91a6efacbb5be9b83acdf6610",
+    "y_train.npy": "76cf03f064af80e4ede8be1826793803a6568549dbcdeef9b4e1f1041f6e094c"
+  },
+  "prior_test_exposure": "Original 8-trial experiment has already evaluated this test set. Further choices use validation only; this is not a never-seen test set.",
+  "scope": "Best among the evaluated configurations, not a global optimum."
+}

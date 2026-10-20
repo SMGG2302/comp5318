@@ -1,0 +1,9 @@
+{
+  "stage1": "3 feature representations x leaf sizes [1,4], 100 trees, sqrt features, unlimited depth",
+  "stage2": "Best representation; 100 trees; max_features [sqrt,0.1,0.3] x max_depth [16,None] x leaf [1,4]",
+  "stage3": "Best two structural configurations; compare 200 and 400 trees",
+  "stage4": "Best two stage3 candidates; repeat at seeds 17 and 73, rank mean validation macro-F1 over seeds 42,17,73",
+  "final": "Freeze configuration; refit all training data with seed 42; evaluate provided test set once for this run",
+  "tie_break": "macro-F1 then accuracy; stable earlier trial order",
+  "limitation": "One fixed validation split is reused; seed repeats measure model randomness, not split uncertainty."
+}

@@ -1,0 +1,19 @@
+{
+  "frozen_utc": "2026-10-18T06:19:19.180884+00:00",
+  "representation": "colour_texture",
+  "params": {
+    "n_estimators": 400,
+    "max_depth": null,
+    "max_features": 0.3,
+    "min_samples_leaf": 1
+  },
+  "trial_ids": [
+    "668e7290f081",
+    "bb07e7d2b53e",
+    "a4870ec145cd"
+  ],
+  "mean_val_macro_f1": 0.8497640541284638,
+  "std_val_macro_f1": 0.0003750550985671843,
+  "mean_val_accuracy": 0.8544270833333334,
+  "final_seed": 42
+}
