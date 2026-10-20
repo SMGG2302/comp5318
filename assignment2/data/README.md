@@ -1,22 +1,22 @@
-# 给组员使用的预处理数据
+# Preprocessed Data for Teammates
 
-这里保存最终随机森林 Notebook 使用的 **357 维固定图像特征**，不是原始图像，也不是仅归一化的图像。无需再执行特征提取或再除以 255。每一行仍对应原始数据中同一位置的图像，标签编码没有改变。
+This folder contains the **357 fixed image features** used by the final Random Forest notebook. These arrays contain extracted features rather than raw or simply normalized images. Feature extraction is already complete: do not divide these arrays by 255 again. Row order matches the original image arrays, and label encoding is unchanged.
 
-| 文件 | 形状 / 作用 |
+| File | Shape / purpose |
 | --- | --- |
-| `X_train_features.npy` | `(32000, 357)`，float32，全部训练样本的特征 |
-| `y_train.npy` | `(32000,)`，对应训练标签 |
-| `X_test_features.npy` | `(8000, 357)`，float32，测试样本的特征 |
-| `y_test.npy` | `(8000,)`，对应测试标签 |
-| `split_indices.npz` | `fit_idx`：25,600 个训练索引；`val_idx`：6,400 个验证索引，与原实验一致 |
-| `feature_names.json` | 357 列的名称，顺序与矩阵一致 |
-| `manifest.json` | 来源及文件 SHA-256 校验值 |
+| `X_train_features.npy` | `(32000, 357)`, float32; features for all training samples |
+| `y_train.npy` | `(32000,)`; corresponding training labels |
+| `X_test_features.npy` | `(8000, 357)`, float32; features for all test samples |
+| `y_test.npy` | `(8000,)`; corresponding test labels |
+| `split_indices.npz` | `fit_idx`: 25,600 training indices; `val_idx`: 6,400 validation indices, matching the original experiment |
+| `feature_names.json` | Names of all 357 feature columns, in matrix column order |
+| `manifest.json` | Data provenance and SHA-256 file checksums |
 
-特征计算：像素转 float32 后除以 255；49 个 4×4 图像块的 RGB 均值（147 列）、标准差（147 列）；每通道 16 档归一化直方图（48 列）；0.1、0.25、0.5、0.75、0.9 分位数（15 列）。特征按上述顺序排列，具体列名见 JSON。这些转换按单张图片计算，不需要在整个数据集上拟合参数。
+Feature extraction first converts pixels to float32 and divides them by 255. It then computes RGB means (147 columns) and standard deviations (147 columns) over 49 spatial blocks of size 4×4, normalized 16-bin histograms for each color channel (48 columns), and the 0.1, 0.25, 0.5, 0.75, and 0.9 quantiles for each channel (15 columns). Feature groups appear in that order; see the JSON file for individual column names. All transformations operate independently on each image and require no parameters fitted across the dataset.
 
-## 直接加载
+## Loading the Data
 
-从 `assignment2` 目录运行以下代码，只需安装 NumPy：
+Run the following code from the `assignment2` directory. Loading the arrays requires only NumPy:
 
 ```python
 from pathlib import Path
@@ -32,19 +32,22 @@ with np.load(data / "split_indices.npz", allow_pickle=False) as split:
 X_fit, y_fit = X_train[fit_idx], y_train[fit_idx]
 X_val, y_val = X_train[val_idx], y_train[val_idx]
 # model.fit(X_fit, y_fit)
-# 用 X_val 和 y_val 比较参数。
+# Compare hyperparameters using X_val and y_val.
 
-# 配置确定后，在全部 X_train、y_train 上重新训练，再加载测试集评估：
+# After selecting the configuration, refit on all X_train and y_train,
+# then load the test set for final evaluation:
 X_test = np.load(data / "X_test_features.npy", allow_pickle=False)
 y_test = np.load(data / "y_test.npy", allow_pickle=False)
 ```
 
-随机森林可以直接使用这些特征。SVM、kNN、逻辑回归等模型若需要标准化，应仅在 `X_fit` 上拟合 scaler，再转换验证集；确定配置后，在全部训练集上重新拟合包含 scaler 的完整 pipeline，再转换测试集。不要用测试集选参数。
+Random Forest can use these features directly. For models that need standardization, such as SVM, kNN, logistic regression, or MLP, fit the scaler only on `X_fit` and use it to transform the validation set. Once the configuration is selected, refit the complete pipeline, including the scaler, on all training samples before transforming the test set. Do not select hyperparameters using the test set.
 
-**如果组员负责 CNN**：应使用 `../Assignment2Data/` 中保留空间结构的原始 `(N, 28, 28, 3)` 图像，按 CNN 的输入要求处理。这里的 357 维特征不能代替 CNN 图像输入，也不能还原原图。
+**For MLP:** these arrays can be used directly as 357 input features, with any required scaling fitted as described above. Reuse the provided split to compare models on the same samples.
 
-## 重新生成
+**For CNN:** use the original `(N, 28, 28, 3)` images in `../Assignment2Data/` relative to this folder, and preprocess them for the CNN's input requirements. The 357-dimensional features do not preserve the original image layout and cannot reconstruct the original images.
 
-在 `assignment2` 下运行 `python export_preprocessed_data.py`。需要原始 `Assignment2Data/`、最终 Notebook，以及 `optimization_20261018/` 下的 `manifest.json` 和 `split_indices.npz`。脚本直接提取 Notebook 中的 `features()` 函数，确保使用同一实现；不会训练模型或修改原始数据。使用仓库 `requirements.txt` 中的环境可保持 NumPy 版本一致。
+## Regenerating the Files
 
-本文件夹可单独分享给组员。它包含原来的全部测试样本，没有筛选样本。原测试集在早期实验中已有评估，实验限制沿用原报告。
+Run `python export_preprocessed_data.py` from `assignment2`. This requires the original `Assignment2Data/` folder, the final notebook, and the `manifest.json` and `split_indices.npz` files in `optimization_20261018/`. The script extracts the notebook's `features()` function to use the same implementation. It does not train a model or modify the original data. Use the environment specified in the repository's `requirements.txt` to match the NumPy version.
+
+This folder can be shared with teammates independently. It includes every original test sample, without filtering. The test set was already evaluated in earlier experiments; the limitations documented in the original report still apply.
