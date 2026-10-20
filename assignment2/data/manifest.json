@@ -1,0 +1,39 @@
+{
+  "representation": "colour_texture",
+  "numpy": "2.3.5",
+  "source_notebook_sha256": "60a20456542274b8e423034e3091d37116b7a135d8fb3f6fa61605a6063504e9",
+  "row_order": "Unchanged from original arrays; labels unchanged.",
+  "preprocessing": "Fixed per-image descriptors; no learned preprocessing parameters.",
+  "files": {
+    "X_train_features.npy": {
+      "sha256": "9920f75eba8c6674dc213bda1782fbf0f93e88497702ddd9deb425df186f6672",
+      "bytes": 45696128
+    },
+    "X_test_features.npy": {
+      "sha256": "d70d5848134eb4cb6dfe626fdd00f3d6c9cd1600bd218308c1f0434d6455f258",
+      "bytes": 11424128
+    },
+    "y_train.npy": {
+      "sha256": "76cf03f064af80e4ede8be1826793803a6568549dbcdeef9b4e1f1041f6e094c",
+      "bytes": 32128
+    },
+    "y_test.npy": {
+      "sha256": "c3bed54d86a454329527824d76a507f1dea7e8f91a6efacbb5be9b83acdf6610",
+      "bytes": 8128
+    },
+    "split_indices.npz": {
+      "sha256": "8b54d2ab4e80e0536d8c6ccb2c1fbb36a68fa052008350a2bba76a1a64b1fe89",
+      "bytes": 256514
+    },
+    "feature_names.json": {
+      "sha256": "37a8ed00bc21f93f039aa6132acd6feefb69432543af9d5574dd96e3ab566656",
+      "bytes": 7869
+    }
+  },
+  "source_data_sha256": {
+    "X_train.npy": "abd9bebaccd42d42505d5f86b5632349e30c47a34b39808e2b92ab69843f33a3",
+    "y_train.npy": "76cf03f064af80e4ede8be1826793803a6568549dbcdeef9b4e1f1041f6e094c",
+    "X_test.npy": "644c267fadac9bce1b1c75273f521fa22f92bdd831ed821ee1b8f98e9f861693",
+    "y_test.npy": "c3bed54d86a454329527824d76a507f1dea7e8f91a6efacbb5be9b83acdf6610"
+  }
+}
