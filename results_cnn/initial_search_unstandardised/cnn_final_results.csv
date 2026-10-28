@@ -1,0 +1,2 @@
+model,best_hyperparameters,epochs,batch_size,n_params,train_samples,train_seconds,seconds_per_epoch,test_predict_seconds,test_accuracy,test_macro_f1,test_weighted_f1,test_macro_precision,test_macro_recall
+CNN,base_filters=32; dropout_rate=0.0; learning_rate=0.001,23,128,422089,32000,211.49517000000196,9.19544217391313,1.0631285999988904,0.804,0.7972650111244806,0.801565162835118,0.8146599428442894,0.8021637780216355

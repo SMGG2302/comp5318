@@ -1,0 +1,9 @@
+true,predicted,count,share_of_true_class
+7 cancer-assoc. stroma,2 debris,93,0.11439114391143912
+7 cancer-assoc. stroma,5 smooth muscle,63,0.07749077490774908
+5 smooth muscle,7 cancer-assoc. stroma,29,0.027052238805970148
+2 debris,7 cancer-assoc. stroma,27,0.03078677309007982
+6 normal colon mucosa,8 colorectal adenocarcinoma epith.,27,0.039589442815249266
+8 colorectal adenocarcinoma epith.,3 lymphocytes,25,0.02129471890971039
+2 debris,5 smooth muscle,22,0.02508551881413911
+6 normal colon mucosa,4 mucus,22,0.03225806451612903
